@@ -1,11 +1,8 @@
-<?php include("header.php"); ?>
-
-
 <div className="container-fluid">
         <div className="row">
           <div className="banner1 col-2">
             <div className="d-flex flex-column">
-              <div />
+              <div>
             </div>
           </div>
 
@@ -68,17 +65,4 @@
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-      <?php include("footer.php");?>
-
-
-
-
-
+<?php require "footer.php"; ?>

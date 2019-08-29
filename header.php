@@ -11,7 +11,7 @@
     <title>Forum X</title>
     <link rel="stylesheet" href="./css/home.css" type="text/css">
 
-        <title></title>
+    <title></title>
     </head>
     <body>
 
@@ -23,7 +23,10 @@
                 echo
                 '
                 <form action="scripts/logout.php" method="post">
+                <button type="submit" name="logout-btn" class="btn btn-outline-warning">Logout</button>
+                <!--
                 <button type="submit" name="logout-btn">Logout</button>
+                -->
                 </form>
                 ';
             } else {
