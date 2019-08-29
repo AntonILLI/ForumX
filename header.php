@@ -16,79 +16,47 @@
     <body>
 
     <div class="head-wrap d-flex">
-          <h1 class="forum flex-grow-1 ">
-                Forum
-                <span>X</span>
-              </h1>
-           
-
-
-           <div class="wrap-button flex-grow-0 ">
-              <button
-                href="/"
-                class="btn btn-outline-primary"
-                
-              >
-                Login
-              </button >
-              <button
-                href="/"
-                class="btn btn-outline-success"
-                
-              >
-                Sign-Up
-             
-             
-              </button>
-            </div>
-        </div>
-
-        <header>
-<div><!-- initil part from Anton-->
-    <?php
-        if (isset($_SESSION['userID'])) {
-            echo '<form action="scripts/logout.php" method="post">
-            <button type="submit" name="logout-btn">Logout</button>
-            </form>';
-        } else {
-            echo ' 
-            <form action="scripts/login.php" method="post">
-            <input type="text" name="email_x" placeholder="Username/email">
-            <input type="password" name="passwd_x" placeholder="Password">
-            <button type="submit" name="login-btn">Login</button>
-            </form>
-            ';
-        }    
-    ?>
-    <a href="signup.php">Signup</a>
-</div><!-- initial part from Anton-->
-
-
-
-<div class="menu-toggle" id="hamburger"> 
-<!-- <i className="fas fa-bars"></i>            -->
+          <h1 class="forum flex-grow-1">Forum<span>X</span></h1>
+          <div class="wrap-button flex-grow-0">
+          <?php
+            if (isset($_SESSION['userID'])) {
+                echo
+                '
+                <form action="scripts/logout.php" method="post">
+                <button type="submit" name="logout-btn">Logout</button>
+                </form>
+                ';
+            } else {
+                echo
+                ' 
+                <form action="scripts/login.php" method="post">
+                <input type="text" name="email_x" placeholder="Username/email">
+                <input type="password" name="passwd_x" placeholder="Password">
+                <button type="submit" name="login-btn" href="scripts/login.php" class="btn btn-outline-primary">Login</button>
+                <button type="submit" href="scripts/signup.php" class="btn btn-outline-success">Sign-Up</button>    
+                <!--
+                <button type="submit" name="login-btn">Login</button>
+                -->
+                </form>
+                ';
+            }    
+          ?>
+          </div>
+    </div>
+    <header>
+    <div class="menu-toggle" id="hamburger"> 
+    <!-- <i className="fas fa-bars"></i> -->
     </div>
       <div class="overlay" >
         <div class="container">   
           <nav>
               <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/forum">forum</a>
-                </li>
-                <li>
-                  <a href="/forum_modal_rule">rule</a>
-                </li>
-            
+                <li><a href="/">Home</a></li>
+                <li><a href="/forum">forum</a></li>
+                <li><a href="/forum_modal_rule">rule</a></li>
               </ul>
-           
-             
-            </nav>
-           </div>
-          </div>
-          </div> 
-
-
-        </header>
+          </nav>
+        </div>
+      </div>
+    </div> 
+    </header>
