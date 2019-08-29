@@ -17,7 +17,8 @@
 
     <div class="head-wrap d-flex">
           <h1 class="forum flex-grow-1">Forum<span>X</span></h1>
-          <div class="wrap-button flex-grow-0">
+    </div>
+    <div class="wrap-button flex-grow-0">
           <?php
             if (isset($_SESSION['userID'])) {
                 echo
@@ -33,10 +34,12 @@
                 echo
                 ' 
                 <form action="scripts/login.php" method="post">
-                <input type="text" name="email_x" placeholder="Username/email">
-                <input type="password" name="passwd_x" placeholder="Password">
+                <input type="text" name="email_x" placeholder="Username/email" style="width: 250px">
+                <input type="password" name="passwd_x" placeholder="Password" style="width: 250px">
+                
                 <button type="submit" name="login-btn" href="scripts/login.php" class="btn btn-outline-primary">Login</button>
-                <button type="submit" href="scripts/signup.php" class="btn btn-outline-success">Sign-Up</button>    
+                <button type="submit" href="scripts/signup.php" class="btn btn-outline-success">Sign-Up</button>
+              
                 <!--
                 <button type="submit" name="login-btn">Login</button>
                 -->
@@ -44,8 +47,8 @@
                 ';
             }    
           ?>
-          </div>
     </div>
+
     <header>
     <div class="menu-toggle" id="hamburger"> 
     <!-- <i className="fas fa-bars"></i> -->
