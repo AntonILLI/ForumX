@@ -1,6 +1,7 @@
 
 
  <footer className="bck_b_dark">
+   <div id="border-line" style="background-color: orange; height: 10px; width: 100%"></div>
       <div className="container">
         <div className="logo">
           Forum <span>X</span>
