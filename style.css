@@ -217,7 +217,7 @@ nav ul li a:hover::after {
   color:#ffffff;
   min-height: 350px;
   width: 100%;
-  background-image: url("/img/star-wars.jpg");
+  background-image: url("img/star-wars.jpg");
   background-size: contain;
   background-position: center;
  
@@ -736,8 +736,8 @@ transition: all 0.5s;
 }
 
 
-
-@-webkit-keyframes escala_imagen {
+/* Anton: changed '@-webkit-keyframes' to '@keyframes' */
+@keyframes escala_imagen {
   from { 
 -webkit-transform: scale(1);
 -moz-transform: scale(1);
@@ -754,6 +754,7 @@ transform: scale(1);
 transform: scale(1.5);
   }
 }
+
 @-o-keyframes identifier {
   from { 
 -webkit-transform: scale(1);

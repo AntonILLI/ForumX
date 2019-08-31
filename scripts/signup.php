@@ -59,7 +59,7 @@ if (isset($_POST['signup-btn']))
                     mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hash_passwd);
                     mysqli_stmt_execute($stmt);
 
-                    header("Location: ../signup.php?signup=success".$username);
+                    header("Location: ../index.php?signup=success".$username);
                     exit();      
                 }
 
