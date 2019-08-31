@@ -1,0 +1,38 @@
+.wrap{
+    width:800px;
+    background: antiquewhite;
+    margin:0px auto;
+}
+
+.add{
+    overflow:hidden;
+}
+
+.add .content{
+    width:798px;
+    margin:0px;
+    padding: 0px;
+}
+
+.add .user{
+    float:left;
+}
+.add .btn{
+    float:right;
+}
+.msg{
+    margin:20px 0px; background: #cccccc; padding:5px;
+}
+
+.msg .info{
+    overflow:hidden;
+}
+.msg .user{
+    float:left; color:blue;
+}
+.msg .time{
+    float:right; color:#999;
+}
+.msg .content{
+    width: 100%; padding:5px;
+}
