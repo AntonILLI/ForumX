@@ -1,18 +1,26 @@
-
 <?php
-$host = '127.0.0.1';
-$dbuser = 'root';
-$pwd = '123456';
-$dbname = 'php10';
-$db = new mysqli($host, $dbuser, $pwd, $dbname);
+include ('connect.php');
 
-if( $db->connect_errno <>0){
-    echo 'failed to connect';
-    echo $db->connect_error;
-    exit;
+$sql = "select count(*) as t from msg";
+$mysqli_result = $db->query($sql);
+$row = $mysqli_result->fetch_array( MYSQLI_ASSOC);
+//var_dump( $row['t'] );
+if( isset($_GET['page'])){
+    $page = $_GET['page'];
+}else{
+    $page = 1;
 }
 
-$sql = "select * from msg order by id desc";
+$dataTotal = $row['t'];
+$pageNum = 5;
+$maxPage = ceil($dataTotal / $pageNum);
+$page = $_GET['page'];
+
+$offSet = ($page - 1) * $pageNum;
+
+//$sql = "select * from msg order by id desc";
+$sql = "select * from msg order by id desc limit $offSet,$pageNum";
+//$sql = "select * from msg order by id desc limit $offSet,$pageNum";
 $mysqli_result = $db->query($sql);
 if($mysqli_result===false){
     echo 'SQL wrong'; //nothing fetch
@@ -20,7 +28,7 @@ if($mysqli_result===false){
 }
 
 $rows = [];
-while( $row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
+while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
     $rows[] = $row;
 }
 
@@ -57,13 +65,27 @@ while( $row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
                 <span class="time"><?php echo date("Y-m-d H:i:s", $row['time']);?></span>
             </div>
 
-        <div class="content">
-            <?php echo $row['content'];?>
+            <div class="content">
+                <?php echo $row['content'];?>
+            </div>
         </div>
-        </div>
-    <?php
+        <?php
     }
     ?>
+
+    <div class="page">
+        <?php
+        for($i = 1; $i <= $maxPage; $i++){
+            if( $i == $_GET['page']){
+                echo "<a class='hover' href='gbook.php?page={$i}'>{$i}</a>";
+            }else{
+                echo "<a href='gbook.php?page={$i}'>{$i}</a>";
+
+            }
+
+        }
+        ?>
+    </div>
 
 </div>
 
