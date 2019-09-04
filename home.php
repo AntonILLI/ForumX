@@ -3,7 +3,10 @@
     <div style="float: right">
         <?php
         if (isset($_SESSION['userID'])) {
-            echo "<p style='color: green'>You are logged in</p>";
+            $userNAME = $_SESSION['userNAME'];
+            echo '
+            <p style="color: green">You are logged in as</p>
+            '.$userNAME;
         } else {
             echo "<p style='color: red'>You are not logged in</p>";
         }
@@ -22,7 +25,7 @@
                             <h1 class="display-4 text-center" style="opacity:0.9; font-size:3.8rem;margin-top:70px;">
                             </h1>
                             <li class="lead pr-4 float-right mr-4" style="font-weight:250;font-size:30px;margin-top:200px;">
-                            <a href="register.html">Sign-Up</a>
+                            <a href="#">Sign-Up</a>
                             </li>
                         </div>
                     </div>

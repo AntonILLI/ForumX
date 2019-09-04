@@ -1,5 +1,5 @@
 <?php
-class input{
+class input {
 
     function post( $user ){
         if( $user == ''){

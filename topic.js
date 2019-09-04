@@ -52,4 +52,3 @@ setTimeout(function(){
 }
 
 setInterval(function(){ inic() }, 10000);
- 

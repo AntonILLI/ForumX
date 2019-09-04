@@ -18,7 +18,10 @@
                     <div class="card mb-4">
                         <div class="row no-gutters">
                           <div class="card-image col-md-4">
-                            <img src="" class="card-img1" alt="Star Wars: Episodes IV – VI">
+                            <a href="topic.php">
+                              <img src="img/star-wars-4-6.jpg" class="card-img1" alt="Star Wars: Episodes IV – VI"
+                              style="max-width: 100%; height: 100%;">
+                            </a>
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
@@ -34,7 +37,10 @@
                       <div class="card mb-4">
                           <div class="row no-gutters">
                             <div class="card-image col-md-4">
-                              <img src="" class="card-img1" alt="Star Wars: Episodes I – III">
+                            <a href="topic.php">
+                              <img src="img/star-wars-7-9.jpg" class="card-img1" alt="Star Wars: Episodes VII – IX"
+                              style="max-width: 100%; height: 100%;">
+                            </a>
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
@@ -66,4 +72,9 @@
         </div>
 
       </section>
+
+
+
+
+
 <?php require "footer.php" ?>

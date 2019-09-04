@@ -26,7 +26,8 @@ a:focus {
 header {
   width: 100%;
   height: 10vh;
-  background: rgb(63, 29, 90)center no-repeat; 
+  background: rgb(63, 29, 90)center no-repeat;
+  padding: 500px; 
 
   background-size: cover;
   position: relative; 

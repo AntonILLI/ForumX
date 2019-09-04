@@ -1,43 +1,28 @@
-
 <?php
-$host = '127.0.0.1';
-$dbuser = 'root';
-$pwd = '123456';
-$dbname = 'php10';
-$db = new mysqli($host, $dbuser, $pwd, $dbname);
 
-if( $db->connect_errno <>0){
-    echo 'failed to connect';
-    echo $db->connect_error;
-    exit;
-}
+include 'scripts/connect.php';
 
 $sql = "select * from msg order by id desc";
+
 $mysqli_result = $db->query($sql);
-if($mysqli_result===false){
-    echo 'SQL wrong'; //nothing fetch
+
+if($mysqli_result === false){
+    echo 'SQL is wrong'; //nothing to fetch
     exit;
 }
 
 $rows = [];
-while( $row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
+
+while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
     $rows[] = $row;
 }
 
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>forum</title>
-    <link rel="stylesheet" type="text/css" href="forum_style.css">
-</head>
-<body>
+<?php require "header.php" ?>
 
 <div class="wrap">
-    <!------------Send message------------------->
     <div class="add">
         <form action="save.php" method="post">
                 <textarea name="content" class="content" cols="50" rows="5">
@@ -50,7 +35,8 @@ while( $row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
 
     <?php
     foreach ($rows as $row){
-        ?>
+    ?>
+
         <div class="msg">
             <div class="info">
                 <span class="user"><?php echo $row['user'];?></span>
@@ -61,11 +47,11 @@ while( $row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
             <?php echo $row['content'];?>
         </div>
         </div>
+    
     <?php
     }
     ?>
 
 </div>
 
-</body>
-</html>
+<? require "footer.php" ?>
