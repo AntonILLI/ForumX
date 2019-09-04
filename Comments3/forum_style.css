@@ -36,3 +36,15 @@
 .msg .content{
     width: 100%; padding:5px;
 }
+
+.page a{
+    margin-right: 20px;
+    bacground:#ccc;
+    color:blue;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+
+.page .hover{
+    color:red;
+}

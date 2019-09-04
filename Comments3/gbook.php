@@ -5,6 +5,7 @@ $sql = "select count(*) as t from msg";
 $mysqli_result = $db->query($sql);
 $row = $mysqli_result->fetch_array( MYSQLI_ASSOC);
 //var_dump( $row['t'] );
+
 if( isset($_GET['page'])){
     $page = $_GET['page'];
 }else{
