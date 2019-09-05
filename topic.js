@@ -1,6 +1,7 @@
 
 var Cont = 0;
 function inic(){
+
 if(Cont % 2 != 0){
   document.querySelector('.img_1').style.opacity = '0';
   document.querySelectorAll('.img_1')[1].style.opacity = '0';
@@ -50,5 +51,6 @@ setTimeout(function(){
   
   
 }
+
 
 setInterval(function(){ inic() }, 10000);

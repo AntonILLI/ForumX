@@ -1,23 +1,13 @@
 <?php require "header.php" ?>
 <main>
-    <div style="float: right">
-        <?php
-        if (isset($_SESSION['userID'])) {
-            $userNAME = $_SESSION['userNAME'];
-            echo '
-            <p style="color: green">You are logged in as</p>
-            '.$userNAME;
-        } else {
-            echo "<p style='color: red'>You are not logged in</p>";
-        }
-        ?>
-    </div>
 <section>
     <div class="container-fluid">
         <div class="row">
                 <div class="banner1 col-2">
+                    <!--
                     <div class="d-flex flex-column">
                     </div>
+                    -->
                 </div>
                 <div class="col-8">
                     <div class="d-flex flex-column">
@@ -46,8 +36,10 @@
                     </div>
                 </div>
                 <div class="banner2 col-2">
+                    <!--
                     <div class="d-flex flex-column">
                     </div >
+                    -->
                 </div>
             </div>
         </div>

@@ -29,7 +29,6 @@
     <!--link rel="stylesheet" href="./css/home.css" type="text/css"-->
     <link rel="stylesheet" href="css/forum_style.css" type="text/css">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <script src="topic.js"></script>
 
     <title>Forum X</title>
     
@@ -69,7 +68,16 @@
             }    
           ?>
     </div>
-
+    <div style="float: right">
+        <?php
+        if (isset($_SESSION['userID'])) {
+            $userNAME = $_SESSION['userNAME'];
+            echo '<p style="color: lightgreen; position: relative">You are logged in as '.$userNAME.'</p>';
+        } else {
+            echo "<p style='color: red'>You are not logged in</p>";
+        }
+        ?>
+    </div>
     <header class="fixed">
     <div class="menu-toggle" id="hamburger"></div>
       <div class="overlay" ></div>

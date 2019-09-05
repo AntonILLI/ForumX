@@ -2,7 +2,7 @@
 
 include('input.php');
 
-include ('scripts/connect.php');
+//include ('connect.php');
 /*
 $db_server = "localhost";
 $db_user = "root";
@@ -23,6 +23,13 @@ if( $db->connect_errno <> 0){
 
 //instead of include database.php*/
 
+$db_server = "localhost";
+$db_user = "root";
+$db_passwd = "";
+$db_name = "forumx";
+
+$conn = mysqli_connect($db_server, $db_user, $db_passwd, $db_name);
+
 $content = $_POST['content'];
 $user = $_POST['user'];
 
@@ -40,8 +47,12 @@ if($is == false){
 
 $time = time();
 
-$sql ="insert into msg (content, user, time) values('{$content}','{$user}','{$time}')";
+$sql ="INSERT INTO msg (content, user, time) VALUES ('{$content}','{$user}','{$time}')";
 
-$is = $db->query($sql);
+$is = $conn->query($sql);
 
-header("location:gbook.php");
+$mysql = "UPDATE xusers SET x_power = x_power + 10 WHERE x_username = '".$user."'";
+
+mysqli_query($conn, $mysql);
+
+header("location:../index.php");

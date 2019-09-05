@@ -15,7 +15,7 @@ if( isset($_GET['page'])){
 $dataTotal = $row['t'];
 $pageNum = 5;
 $maxPage = ceil($dataTotal / $pageNum);
-$page = $_GET['page'];
+//$page = $_GET['page'];
 
 $offSet = ($page - 1) * $pageNum;
 

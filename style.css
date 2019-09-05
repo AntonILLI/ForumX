@@ -253,7 +253,7 @@ nav ul li a:hover::after {
   max-height: 100%;
   max-width: 100%;
   opacity: 0.8;
-  background-image: url("/img/moon.jpg");
+  background-image: url("img/milkyway.jpg");
   border-right: 2px solid rgb(255,255,0);
 }
 
@@ -262,7 +262,7 @@ nav ul li a:hover::after {
   max-width: 100%;
   opacity: 0.8;
   border-left: 2px solid rgb(255,255,0);
-  background-image: url("/img/dark.jpg");
+  background-image: url("img/milkyway.jpg");
 }
 
 footer{
@@ -566,7 +566,7 @@ margin: .6em auto .6em;
   box-shadow:0px 10px 25px -5px rgba(0,0,0,0.25);
 }
 .cont_text {
-  position:relative;
+  position: relative;
   float: left;
   width: 50%;
   height:80%;
@@ -806,7 +806,23 @@ transform: scale(1.5);
 .card-comments{
  background-color:#ffffff;
  height:150px;
- width:1100px;
+ width:1150px;
+}
+
+.comment-power {
+  
+  width: 100px;
+  height: 100px;
+  border-bottom: 100px solid lawngreen;
+  border-left: 100px solid transparent;   
+  position: relative; 
+  
+}
+
+.power {
+  position: absolute;
+  right:10px;
+  top:50px;
 }
 
 /*pagenation*/
