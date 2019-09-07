@@ -34,7 +34,8 @@ if (isset($_POST['login-btn'])) {
                     session_start();
                     $_SESSION['userID'] = $row['x_id'];
                     $_SESSION['userNAME'] = $row['x_username'];
-
+                    $_SESSION['userPOWER'] = $row['x_power'];
+                    
                     header("Location: ../index.php?login=success");
                     exit();                         
 

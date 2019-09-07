@@ -41,6 +41,7 @@
     <div class="wrap-button flex-grow-0">
           <?php
             if (isset($_SESSION['userID'])) {
+
                 echo
                 '
                 <form action="scripts/logout.php" method="post">

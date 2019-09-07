@@ -37,8 +37,22 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
     $rows[] = $row;
 }
 
-?>
+include "scripts/gain_power.php";
 
+$value = ($power / 1000) * 100;
+
+?>
+<div class="progress">
+    <div
+        class="progress-bar bg-success"
+        role="progressbar"
+        style="width:<?php echo $value.'%' ?>"
+        aria-valuenow="<?php echo $value ?>"
+        aria-valuemin="0"
+        aria-valuemax="1000">
+        <?php echo $value.'% Power ('.$power.'/1000)' ?>
+    </div>
+</div>
 
 <div class="cont_principal d-flex flex-column justify-content-center align-items-center">
         <div class="cont_text_img">
@@ -56,12 +70,12 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
                     was followed by the sequels Episode V – The Empire Strikes Back (1980) and 
                     Episode VI – Return of the Jedi (1983), forming what is collectively referred 
                     to as the original trilogy. A prequel trilogy was later released, consisting of Episode I </p>
-                    
+                    <!--
                     <div class="cont_icon_like">
                     <button class="btn_read_m">Leave a comment</button>
-                    <p> <i class="comments-logo fa fa-comments"></i><span>10</span></p>
+                    <p> <i class="comments-logo fa fa-comments"></i><span><?php echo $count ?></span></p>
                     </div>
-
+                    -->
             </div>
             
             <div class="cont_img_frond">
@@ -69,13 +83,16 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
                 <img class='img_2' src="img/star-wars-7-9.jpg"alt="" /> 
             </div>
         </div>
-
         <!-- leave a comment input -->
         <?php
-        
+
         if (isset($_SESSION['userID'])) {
             $userNAME = $_SESSION['userNAME'];
-            //$userPOWER = $_SESSION['userPOWER'];
+            $userPOWER = $_SESSION['userPOWER'];
+            
+            include "scripts/date.php";
+
+            if(check_24_hours($userNAME)){
             echo '
             <div class="wrapper">
                 <div class="add">
@@ -87,14 +104,16 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
                 </div>
             </div>
             ';
+            } else {
+                echo "<p style='color: red'>Gotta wait till next day</p>";
+            }
         } else {
             echo "<p style='color: red'>You are not logged in</p>";
         }
         ?>
         <!-- leave a comment input -->
-                    
-
-        <?php foreach ($rows as $row){ ?>
+                
+        <?php foreach ($rows as $row) { ?>
         
         <div class="d-flex card-comments shadow mb-3">
             <div class="card-body">
@@ -104,23 +123,23 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
                     </div>
                     <div class="flex-grow-1">
 
-                        <h5><a href="#"><?php echo $row['user'];?>
+                        <h5><a href="#">
+                            <?php
+                            echo $row['user'];
+                            ?>
                         <small class="text-muted">
-                            <?php echo date("Y-m-d H:i:s", $row['time']);?>
+                            <?php
+                            echo date("Y-m-d H:i:s", $row['time']);
+                            ?>
                         </small>
                         </a></h5>
+
                         <h2>
                             <?php echo $row['content'];?>
                         </h2>
 
                     </div>
                 </div>
-            </div>
-            <div class="comment-power">
-            <div class="power">
-            <h2 style="color:white"><strong>
-            +10<!--?php include "scripts/retrieve_power.php" ?-->
-            </strong></h2></div>
             </div>
         </div>
 

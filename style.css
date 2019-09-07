@@ -805,24 +805,8 @@ transform: scale(1.5);
 /*comment*/
 .card-comments{
  background-color:#ffffff;
- height:150px;
- width:1150px;
-}
-
-.comment-power {
-  
-  width: 100px;
-  height: 100px;
-  border-bottom: 100px solid lawngreen;
-  border-left: 100px solid transparent;   
-  position: relative; 
-  
-}
-
-.power {
-  position: absolute;
-  right:10px;
-  top:50px;
+ height:100px;
+ width:800px;
 }
 
 /*pagenation*/

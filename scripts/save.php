@@ -33,26 +33,30 @@ $conn = mysqli_connect($db_server, $db_user, $db_passwd, $db_name);
 $content = $_POST['content'];
 $user = $_POST['user'];
 
-$input = new input();
+$sql = "SELECT * FROM xusers WHERE x_username = '".$user."'";
 
+$result = mysqli_query($conn, $sql);
+
+$row = mysqli_fetch_assoc($result);
+
+$pwr = $row['x_power'];
+
+$input = new input();
 $is = $input -> post( $content );
 if($is == false){
     die('You should leave some message');
 }
-
 $is = $input -> post( $user );
 if($is == false){
     die('You should leave your name');
 }
 
+
 $time = time();
-
-$sql ="INSERT INTO msg (content, user, time) VALUES ('{$content}','{$user}','{$time}')";
-
+$sql ="INSERT INTO msg (content, user, time, power) VALUES ('{$content}','{$user}','{$time}','{$pwr}')";
 $is = $conn->query($sql);
 
-$mysql = "UPDATE xusers SET x_power = x_power + 10 WHERE x_username = '".$user."'";
+$sql = "UPDATE xusers SET x_power = x_power + 10 WHERE x_username = '".$user."'";
+mysqli_query($conn, $sql);
 
-mysqli_query($conn, $mysql);
-
-header("location:../index.php");
+header("location:../topic.php?page=1");
