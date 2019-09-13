@@ -67,14 +67,25 @@
                         <div class="row no-gutters">
                           <div class="card-image col-md-4">
                             <a href="topic.php?page=1">
-                            <img src='upload/<?php echo $row['image'];?>' height='250' width='250'>
+                            <img class="img-fluid rounded mx-auto d-block" src='upload/<?php echo $row['image'];?>' height='250' width='250'>
                             </a>
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
                             <a href="topic.php?id=<?php echo $row['id']; ?>" class="card-title"><?php echo $row['title']; ?></a>
                               <p class="card-text"><?php echo $row['description']; ?></p>
-                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              <?php 
+                              $query_get_last_comment = "SELECT * FROM msg WHERE topic_id = 13 ORDER BY time DESC";
+                              $save_result = mysqli_query($mysqli, $query_get_last_comment);
+                              $get_time_col = mysqli_fetch_assoc($save_result);
+                              echo
+                              '
+                              <p class="card-text"><small class="text-muted">Last updated: '.
+                              date("Y-m-d H:i:s", $get_time_col['time'])
+                              .'</small></p>
+
+                              '
+                              ?>
                             </div>
                           </div>
                         </div>

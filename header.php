@@ -1,5 +1,6 @@
 <?php
     if (session_status() == PHP_SESSION_NONE) {
+    ini_set('date.timezone','Pacific/Auckland');
     session_start();
 }
 ?>
@@ -46,7 +47,18 @@
     <div class="head-wrap d-flex">
           <h1 class="forum flex-grow-1">Forum<span>X</span></h1>
     </div>
-    <div class="wrap-button flex-grow-0">
+    <div class="wrap-button d-flex flex-grow-0">
+        <div>
+        <?php
+        if (isset($_SESSION['userID'])) {
+            $userNAME = $_SESSION['userNAME'];
+            echo '<p id="status" style="color: lightgreen; position: relative">You are logged in as '.$userNAME.'</p>';
+        } else {
+            echo '<p id="status" style="color: red">You are not logged in</p>';
+        }
+        ?>
+        </div>
+        <div>
           <?php
             if (isset($_SESSION['userID'])) {
 
@@ -54,9 +66,6 @@
                 '
                 <form action="scripts/logout.php" method="post">
                 <button type="submit" name="logout-btn" class="btn btn-outline-warning">Logout</button>
-                <!--
-                <button type="submit" name="logout-btn">Logout</button>
-                -->
                 </form>
                 ';
             } else {
@@ -65,27 +74,13 @@
                 <form action="scripts/login.php" method="post">
                 <input type="text" name="email_x" placeholder="Username/email" style="width: 250px">
                 <input type="password" name="passwd_x" placeholder="Password" style="width: 250px">
-                
-                <button type="submit" name="login-btn" href="scripts/login.php" class="btn btn-outline-primary">Login</button>
-                <a href="scripts/signup.php" class="btn btn-outline-success">Sign-Up</a>
-              
-                <!--
-                <button type="submit" name="login-btn">Login</button>
-                -->
+                <button type="submit" name="login-btn" href="scripts/login.php" class="btn btn-outline-primary btn-sm">Login</button>
+                <a href="scripts/signup.php" class="btn btn-outline-success btn-sm">Sign-Up</a>
                 </form>
                 ';
             }    
           ?>
-    </div>
-    <div style="float: right">
-        <?php
-        if (isset($_SESSION['userID'])) {
-            $userNAME = $_SESSION['userNAME'];
-            echo '<p style="color: lightgreen; position: relative">You are logged in as '.$userNAME.'</p>';
-        } else {
-            echo "<p style='color: red'>You are not logged in</p>";
-        }
-        ?>
+        </div>  
     </div>
     <header class="fixed">
     <div class="menu-toggle" id="hamburger"></div>

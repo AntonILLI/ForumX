@@ -111,12 +111,20 @@ $value = ($power / 1000) * 100;
             if(check_24_hours($userNAME)){
             echo '
             <div class="wrapper">
-                <div class="add">
-                    <form action="scripts/save.php" method="post">
-                        <textarea name="content" class="content" cols="50" rows="5"></textarea>
+                <div class="d-flex flex-grow-0">
+                    <form action="scripts/save.php" method="post" style="width:800px">
+
+                        <textarea name="content" class="form-control" rows="5"></textarea>
+
+                        <!--textarea name="content" class="content" cols="50" rows="5"></textarea-->
+
                         <input name="user" value="'.$userNAME.'"class="user" type="hidden" readonly>
                         <input name="topic" value="'.$id.'" type="hidden" readonly>
-                        <input class="btn" type="submit" value="Send">
+                        
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Leave comment</button>
+                        
+                        <!--button class="btn-add btn-primary btn-lg" type="submit" value="Send">Send</button-->
+
                     </form>
                 </div>
             </div>

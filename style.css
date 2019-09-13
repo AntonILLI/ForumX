@@ -44,7 +44,7 @@ header {
   height: 9vh;
   background: rgb(63, 29, 90)center no-repeat;
   background-size: cover;
-  padding-bottom: 100px;
+  padding-bottom: 75px;
 }
 
 
@@ -66,9 +66,17 @@ header {
 
 
 .wrap-button{
-  margin-right:50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
-.btn {
+
+#status {
+margin: 7px;
+align-self: center;
+}
+
+/*.btn {
   margin-right:20px;
   border-collapse: collapse; 
 
@@ -78,7 +86,7 @@ header {
   font-size: 2rem;
   font-weight: 250;
 
-}
+}*/
 
 
 
@@ -225,9 +233,8 @@ nav ul li a:hover::after {
 }
 
 .btn {
-  height: 50px;
   width: 110px;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-align: center;
   font-weight: 250;
 }
@@ -327,10 +334,7 @@ span {
   width:100%;
   margin-top:10px;
 }
-.no-gutters{
-  height:250px;
- 
-}
+
 .card-body{
   width:100%;
 }
@@ -340,7 +344,7 @@ span {
   border-bottom:2px solid black;
 }
 .card-text{
- font-size:2rem;
+ font-size:1.5rem;
 }
 .card-image{
   width:100%;
@@ -353,6 +357,7 @@ span {
   /* background-position: center; */
 
 }
+
 /*Rule*/
 
 
@@ -559,7 +564,6 @@ margin: .6em auto .6em;
   width: 980px;
   height: 380px;;
   background-color:#fff;
-  margin-left:140px;
  
   box-shadow:0px 10px 25px -5px rgba(0,0,0,0.25);
 }
@@ -798,6 +802,12 @@ transform: scale(1.5);
 }
 
 /*comment*/
+
+.btn-block {
+  width: 800px;
+  margin-bottom: 25px;
+}
+
 .card-comments{
  background-color:#ffffff;
  height:100px;

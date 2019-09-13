@@ -190,7 +190,7 @@
                 <tbody>
                   <tr>
                     <td><?php echo $row['x_id']; ?></td>
-                    <td><img src='upload/<?php echo $row['x_userimage']; ?>' height='100' width='150'></td>
+                    <td><img src=<?php echo 'img/'.$row['x_userimage']; ?> height="100" width="150"></td>
                     <td><?php echo $row['x_username']; ?></td>
                     <td><?php echo $row['x_email']; ?></td>
                     <td> <a href="user_process.php?delete=<?php echo $row['x_id']; ?>" class="btn btn-danger mt-4" style="float:right;">Delete</a></td>
