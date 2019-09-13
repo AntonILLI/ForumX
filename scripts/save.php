@@ -32,6 +32,7 @@ $conn = mysqli_connect($db_server, $db_user, $db_passwd, $db_name);
 
 $content = $_POST['content'];
 $user = $_POST['user'];
+$topic = $_POST['topic'];
 
 $sql = "SELECT * FROM xusers WHERE x_username = '".$user."'";
 
@@ -53,10 +54,11 @@ if($is == false){
 
 
 $time = time();
-$sql ="INSERT INTO msg (content, user, time, power) VALUES ('{$content}','{$user}','{$time}','{$pwr}')";
+$sql ="INSERT INTO msg (content, user, time, power, topic_id)
+        VALUES ('{$content}','{$user}','{$time}','{$pwr}','{$topic}')";
 $is = $conn->query($sql);
 
 $sql = "UPDATE xusers SET x_power = x_power + 10 WHERE x_username = '".$user."'";
 mysqli_query($conn, $sql);
 
-header("location:../topic.php?page=1");
+header("location:../topic.php?id=$topic");

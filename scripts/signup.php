@@ -48,7 +48,7 @@ if (isset($_POST['signup-btn']))
                 exit();          
             } else {
 
-                $sql = "INSERT INTO xusers (X_username, x_email, x_password) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO xusers (X_username, x_email, x_password, x_power) VALUES (?, ?, ?, 10)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../signup.php?error=sqlerror&email_x=".$email."&username_x=".$username);

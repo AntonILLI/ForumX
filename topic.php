@@ -1,16 +1,24 @@
 <?php require "header.php" ?>
+<?php require "scripts/connect.php" ?>
+
 <script src="topic.js"></script>
-<!-- lian's part from making comment -->
 
 <?php
-include 'scripts/connect.php';
-
+//get topic id    
+    if(empty($_GET['id'])){
+     header("Location:forum.php");
+    }else{
+   
+    $id = $_GET['id'];
+    $result = $db->query("SELECT * FROM xAdmin WHERE id=$id") or die($db->error);
+    }
+//lian's part from making comment
 //count number of messages
-$sql = "select count(*) as t from msg";
+$sql = "select count(*) as t from msg where topic_id = $id";
 $mysqli_result = $db->query($sql);
 $row = $mysqli_result->fetch_array( MYSQLI_ASSOC);
 
-if( isset($_GET['page'])){
+if(isset($_GET['page'])){
     $page = $_GET['page'];
 }else{
     $page = 1;
@@ -20,11 +28,10 @@ $dataTotal = $row['t'];
 $pageNum = 5;
 $maxPage = ceil($dataTotal / $pageNum);
 //$page = $_GET['page'];
-
 $offSet = ($page - 1) * $pageNum;
-
+$power = 0;
 //$sql = "select * from msg order by id desc";
-$sql = "select * from msg order by id desc limit $offSet,$pageNum";
+$sql = "select * from msg where topic_id=$id order by id desc limit $offSet,$pageNum";
 //$sql = "select * from msg order by id desc limit $offSet,$pageNum";
 $mysqli_result = $db->query($sql);
 if($mysqli_result===false){
@@ -37,14 +44,22 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
     $rows[] = $row;
 }
 
-include "scripts/gain_power.php";
+//require "scripts/gain_power.php";
+$power = 0;
+
+$new_sql = "SELECT * FROM msg WHERE topic_id=$id";
+$new_result = mysqli_query($db, $sql);
+
+while($new_row = mysqli_fetch_assoc($new_result)){
+    $power = $power + $new_row['power'];
+}
 
 $value = ($power / 1000) * 100;
 
 ?>
-<div class="progress">
+<div class="progress" style="background-color: #be0000; height: 20px; font-size: large">
     <div
-        class="progress-bar bg-success"
+        class="progress-bar bg-success progress-bar-striped progress-bar-animated"
         role="progressbar"
         style="width:<?php echo $value.'%' ?>"
         aria-valuenow="<?php echo $value ?>"
@@ -56,31 +71,32 @@ $value = ($power / 1000) * 100;
 
 <div class="cont_principal d-flex flex-column justify-content-center align-items-center">
         <div class="cont_text_img">
-
             <div class="cont_img_back">
-                <img class='img_1' src="img/star-wars-7-9.jpg" alt="">
-                <img class='img_2' src="img/star-wars-4-6.jpg" alt="">
+            <?php while($row = $result->fetch_assoc()): ?>
+    
+                <img class='img_1' src='upload/<?php echo $row['image']?>' alt="" />
+                <img class='img_2' src="img/star-wars.jpg" alt="">
             </div>
 
             <div class="cont_text">
-                <h1>Star Wars: Episodes IV – VI</h1>
-                <p>Star Wars is an American epic space-opera media franchise created by George Lucas.
-                    The franchise began with the eponymous 1977 film and quickly became a worldwide
-                    pop-culture phenomenon. The original film, later subtitled Episode IV – A New Hope,
-                    was followed by the sequels Episode V – The Empire Strikes Back (1980) and 
-                    Episode VI – Return of the Jedi (1983), forming what is collectively referred 
-                    to as the original trilogy. A prequel trilogy was later released, consisting of Episode I </p>
+
+                <h1><?php echo $row['title']; ?></h1>
+
+                <p><?php echo $row['description']; ?></p>
+
+
                     <!--
                     <div class="cont_icon_like">
                     <button class="btn_read_m">Leave a comment</button>
-                    <p> <i class="comments-logo fa fa-comments"></i><span><?php echo $count ?></span></p>
+                    <p> <i class="comments-logo fa fa-comments"></i><span><!?php echo $count ?></span></p>
                     </div>
                     -->
             </div>
             
             <div class="cont_img_frond">
-                <img class='img_1'src="img/star-wars-4-6.jpg"alt="" />
-                <img class='img_2' src="img/star-wars-7-9.jpg"alt="" /> 
+                <img class='img_1' src='upload/<?php echo $row['image']?>' alt="" />
+                <img class='img_2' src="img/star-wars.jpg"alt="" /> 
+                <?php endwhile;?>
             </div>
         </div>
         <!-- leave a comment input -->
@@ -89,7 +105,7 @@ $value = ($power / 1000) * 100;
         if (isset($_SESSION['userID'])) {
             $userNAME = $_SESSION['userNAME'];
             $userPOWER = $_SESSION['userPOWER'];
-            
+
             include "scripts/date.php";
 
             if(check_24_hours($userNAME)){
@@ -99,6 +115,7 @@ $value = ($power / 1000) * 100;
                     <form action="scripts/save.php" method="post">
                         <textarea name="content" class="content" cols="50" rows="5"></textarea>
                         <input name="user" value="'.$userNAME.'"class="user" type="hidden" readonly>
+                        <input name="topic" value="'.$id.'" type="hidden" readonly>
                         <input class="btn" type="submit" value="Send">
                     </form>
                 </div>
@@ -169,13 +186,17 @@ $value = ($power / 1000) * 100;
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                     </li> -->
-
-                    <?php
-                    for($i = 1; $i <= $maxPage; $i++){
-                        if( $i == $page){
+                    <!--
                         echo "<li class='page-item'><a class='hover page-link' href='topic.php?page={$i}'>{$i}</a></li>";
                     }else{
                         echo "<li class='page-item'><a class='page-link' href='topic.php?page={$i}'>{$i}</a></li>";
+                    -->
+                    <?php
+                    for($i = 1; $i <= $maxPage; $i++){
+                        if( $i == $page){
+                        echo "<li class='page-item'><a class='page-link' href='topic.php?page={$i}&id={$id}'>{$i}</a></li>";
+                    }else{
+                        echo "<li class='page-item'><a class='page-link' href='topic.php?page={$i}&id={$id}'>{$i}</a></li>";
 
                     }
 
@@ -193,6 +214,5 @@ $value = ($power / 1000) * 100;
                     </li> -->
                 </ul>
         </div>
-
 </div>
 <?php require "footer.php"?>

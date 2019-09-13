@@ -1,12 +1,14 @@
 <?php
 
-require "database.php";
+function gain_power($topic) {
 
-$power = 0;
+    require "database.php";
 
-$sql = "SELECT * FROM msg";
-$result = mysqli_query($conn, $sql);
+    $fullpower = 0;
 
-while($row = mysqli_fetch_assoc($result)){
-    $power = $power + $row['power'];
+    $query = "SELECT SUM(power) AS total FROM msg WHERE topic_id = $topic";
+    $fullpower = mysqli_query($conn, $query);
+    $array = mysqli_fetch_assoc($fullpower);
+
+    return $array['total'];
 }

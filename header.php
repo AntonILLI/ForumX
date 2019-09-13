@@ -1,4 +1,8 @@
-<?php session_start() ?>
+<?php
+    if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +33,11 @@
     <!--link rel="stylesheet" href="./css/home.css" type="text/css"-->
     <link rel="stylesheet" href="css/forum_style.css" type="text/css">
     <link rel="stylesheet" href="style.css" type="text/css">
-
+    <!--
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    -->
+    
+    
     <title>Forum X</title>
     
   </head>
@@ -88,6 +96,12 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="forum.php">Forum</a></li>
                 <li><a href="rule.php">Rule</a></li>
+                <?php if(isset($_SESSION['userID']) && $_SESSION['userID'] == 1){
+                  echo '
+                  <li><a href="admin_dashboard.php">Dashboard</a></li>
+                  ';
+                }
+                ?>
               </ul>
           </nav>
         </div>
