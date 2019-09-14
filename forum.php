@@ -90,6 +90,7 @@
                           </div>
                         </div>
                         <div class="progress" style="background-color: #be0000; height: 20px">
+                          
                           <?php
                           include_once "scripts/gain_power.php"; 
                           $topic_id = 0;
@@ -99,6 +100,7 @@
                           $value = ($topic_power / 1000) * 100;
 
                           ?>
+                          
                           <div
                           class="progress-bar bg-success progress-bar-striped progress-bar-animated"
                           role="progressbar"
