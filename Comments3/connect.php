@@ -2,8 +2,8 @@
 
 $host = 'localhost';
 $dbuser = 'root';
-$pwd = '';
-$dbname = 'forumx';
+$pwd = '123456';
+$dbname = 'php10';
 
 $db = new mysqli($host, $dbuser, $pwd, $dbname);
 

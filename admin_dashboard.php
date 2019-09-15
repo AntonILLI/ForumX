@@ -20,7 +20,7 @@
 
     <div class="container">
       <?php
-      $mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
+      $mysqli = new mysqli('localhost', 'root', '123456', 'ForumX') or die(mysqli_error($mysqli));
 
 
       ?>

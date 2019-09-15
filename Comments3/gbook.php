@@ -1,6 +1,9 @@
 <?php
 include ('connect.php');
 
+ini_set('date.timezone','NZ');
+
+
 $sql = "select count(*) as t from msg";
 $mysqli_result = $db->query($sql);
 $row = $mysqli_result->fetch_array( MYSQLI_ASSOC);
@@ -69,6 +72,33 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
             <div class="content">
                 <?php echo $row['content'];?>
             </div>
+
+            <?php
+
+            $end = $row['time']+86400-36000;
+            //$end = $row['time'];
+            $start = time();
+            $diff = $end - $start;
+
+            $countdown=date("h:m:s", $diff);
+
+
+
+            $hour = date('H', $diff)-24;
+            $minute = date('m', $diff)-60;
+            $seconds = date('s', $diff)-60;
+
+            echo('For your next comment');
+            //echo ($end);
+            // echo($diff);
+
+            echo($countdown);
+
+            printf(' time left: %dhour%dminutes%dseconds', $hour,$minute,$seconds);
+
+            ?>
+
+
         </div>
         <?php
     }
@@ -77,7 +107,7 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
     <div class="page">
         <?php
         for($i = 1; $i <= $maxPage; $i++){
-            if( $i == $_GET['page']){
+            if( $i == $page){
                 echo "<a class='hover' href='gbook.php?page={$i}'>{$i}</a>";
             }else{
                 echo "<a href='gbook.php?page={$i}'>{$i}</a>";
@@ -86,7 +116,9 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
 
         }
         ?>
+
     </div>
+
 
 </div>
 
