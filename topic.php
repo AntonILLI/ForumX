@@ -114,9 +114,7 @@ $value = ($power / 1000) * 100;
                 <div class="d-flex flex-grow-0">
                     <form action="scripts/save.php" method="post" style="width:800px">
 
-                        <textarea name="content" class="form-control" rows="5"></textarea>
-
-                        <!--textarea name="content" class="content" cols="50" rows="5"></textarea-->
+                        <textarea name="content" class="form-control" rows="5" placeholder="Type you message here. Your comment will increase this topic`s power"></textarea>
 
                         <input name="user" value="'.$userNAME.'"class="user" type="hidden" readonly>
                         <input name="topic" value="'.$id.'" type="hidden" readonly>

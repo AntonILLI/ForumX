@@ -1,86 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require'header.php'?>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-    crossorigin="anonymous">
- 
-  <title>ForumX</title>
-</head>
 
-<body>
+
 <?php
  $mysqli = new mysqli('localhost','root','','ForumX') or die(mysqli_error($mysqli));
-//  if(empty($_GET['id'])){
-//   header("Location:user_dashboard.php");
-//  }else{
+ if(empty($_SESSION['user_id'])){
+  header("Location:user_dashboard.php");
+ }else{
 
-// $id = $_GET['id'];
-//  $result = $mysqli->query("SELECT * FROM xUsers WHERE id=$id") or die($mysqli->error);
-//  }
+ $id = $_SESSION['user_id'];
+ $result = $mysqli->query("SELECT * FROM xUsers WHERE id=$id") or die($mysqli->error);
+
+}
  
 ?>
 
-<?php
-      $mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
-
-      $result = $mysqli->query("SELECT COUNT(*) FROM xUsers") or die($mysqli->error);
-
-
-      $row = mysqli_fetch_row($result);
-//pagination 
-      $num_rows = $row[0];
-
-      $set_per_page = 5;
-      $total = ceil($num_rows / $set_per_page);
-
-
-      if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-
-        $current_page = (int) $_GET['page'];
-      } else {
-
-        $current_page = 1;
-      }
-
-      if ($current_page > $total) {
-
-        $current_page = $total;
-      }
-
-      if ($current_page < 1) {
-        $current_page = 1;
-      }
-
-
-      $offset = ($current_page - 1) * $set_per_page;
-      // $sql = "SELECT id FROM user LIMIT $offset, $set_per_page";
-      // $result_row = $mysqli->query($sql) or die($mysqli->error);
-
-      // $sql = "SELECT * FROM user LIMIT";
-      // $sql .= "LIMIT $set_per_page";
-      // $sql .= "OFFSET $$offset";
-      $sql = "SELECT * FROM xUsers LIMIT $offset, $set_per_page";
-      $result_row = $mysqli->query($sql) or die($mysqli->error);
-
-      ?>
 
 
 
 <?php include 'user_process.php'?>
-<?php
-
-$mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
-$result = $mysqli->query("SELECT * FROM xUsers") or die($mysqli->error);
-
- 
-// will be limited by id //
-?>
 
 
 
@@ -143,26 +81,37 @@ $result = $mysqli->query("SELECT * FROM xUsers") or die($mysqli->error);
   </section>
 
 <section>
+
+
 <div class="container">
 <div class="row">
   <div class="col-md-11">
+
+  <?php
+
+while ($row = $result->fetch_assoc()) :
+
+  ?>
 <div class="card mb-4" style="height:250px;">
   <div class="row no-gutters">
     <div class="col-md-2">
-      <img src="upload/avatar.png" class="img-fluid rounded-circle w-55 mb-4 ml-4 mt-4">
-    </div>
+      <img src="upload/<?php echo $row['x_userimage'] ?>" class="img-fluid rounded-circle w-55 mb-4 ml-4 mt-4">
+</div>
+
     <div class="col-md-10">
       <div class="card-body ml-5 mt-1">
-        <h3 class="card-title">User Name</h3>
+        <h3 class="card-title"><?php echo $row['x_username']?></h3>
         
-        <p class="card-text">Description</p>
+        <p class="card-text"><?php echo $row['x_description']?></p>
         <p class="card-text"><small class="text-muted"></small></p>
       </div>
     </div>
   </div>
 </div>
-
+<?php endwhile?>
 </section>
+
+
 
 
   <!-- POSTS -->
@@ -180,21 +129,18 @@ $result = $mysqli->query("SELECT * FROM xUsers") or die($mysqli->error);
                   <th>#</th>
                   <th>Title</th>
                   <th></th>
-                  <th>Date</th>
+                  <th>description</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Post One</td>
+                  <td>coment</td>
                   <td></td>
-                  <td>May 10 2018</td>
-                  <td>
-                    <a href="details.html" class="btn btn-secondary">
-                      <i class="fas fa-angle-double-right"></i> Details
-                    </a>
-                  </td>
+                  <td></td>
+                  <td></td>
                 </tr>
                
                
@@ -272,25 +218,6 @@ $result = $mysqli->query("SELECT * FROM xUsers") or die($mysqli->error);
       </div>
     </div>
   </div>
-
-
-
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-
-  <script>
-    // Get the current year for the copyright
-    $('#year').text(new Date().getFullYear());
-
-    CKEDITOR.replace('editor1');
-  </script>
-</body>
-
-</html>
+  <?php require'footer.php'?>
 
  
