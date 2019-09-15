@@ -93,7 +93,11 @@
                 <li><a href="rule.php">Rule</a></li>
                 <?php if(isset($_SESSION['userID']) && $_SESSION['userID'] == 1){
                   echo '
-                  <li><a href="admin_dashboard.php">Dashboard</a></li>
+                  <li><a id="admin-dashboard" href="admin_dashboard.php">Dashboard</a></li>
+                  ';
+                } elseif(isset($_SESSION['userID'])) {
+                  echo '
+                  <li><a id="user-dashboard" href="user_dashboard.php">Profile</a></li>
                   ';
                 }
                 ?>

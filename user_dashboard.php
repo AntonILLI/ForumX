@@ -1,60 +1,25 @@
-<?php require'header.php'?>
+<?php require "header.php"?>
 
-
-
-<?php
+<!--?php
  $mysqli = new mysqli('localhost','root','','ForumX') or die(mysqli_error($mysqli));
  if(empty($_SESSION['user_id'])){
-  header("Location:user_dashboard.php");
- }else{
+  header("Location: user_dashboard.php");
+ } else {
 
  $id = $_SESSION['user_id'];
  $result = $mysqli->query("SELECT * FROM xUsers WHERE id=$id") or die($mysqli->error);
 
 }
- 
-?>
-
-
-
+?-->
 
 <?php include 'user_process.php'?>
 
 
-
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
-      <a href="Home.php" class="navbar-brand">ForumX</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav">
-          <li class="nav-item px-2">
-            <a href="#" class="nav-link active">Dashboard</a>
-          </li>
-          <li class="nav-item px-2">
-            <a href="forum.php" class="nav-link">Forum</a>
-          </li>
-          
-        </ul>
-
-
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown mr-3">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="fas fa-user"></i> Welcome ForumX
-            </a>
-            <div class="dropdown-menu">
-              <a href='user_profile.php' class="dropdown-item">
-                <i class="fas fa-user-circle"></i> Profile
-              </a>
-            </div>
-          </li>
           <li class="nav-item">
-            <a href="login.html" class="nav-link">
-              <i class="fas fa-user-times"></i> Logout
-            </a>
           </li>
         </ul>
       </div>
@@ -62,23 +27,22 @@
   </nav>
 
 
-
   <!-- HEADER -->
   <header id="main-header" class="py-2 bg-info text-white">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <h1>
-            <i class="fas fa-cog"></i> User Dashboard</h1>
+        <div>
+          <h1><i class="fas fa-cog"></i> User Dashboard</h1>
+        </div>
+        <div style="width: 50%; margin: 0 auto;">
+        <a href='user_profile.php' class="btn btn-warning btn-block mt-2" style="font-size:20px;">
+            <i class="fas fa-arrow-left"></i> Edit Profile
+          </a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ACTINS -->
-   <section id="actions" class="py-4 mb-4 bg-light">
-   
-  </section>
 
 <section>
 
@@ -88,6 +52,11 @@
   <div class="col-md-11">
 
   <?php
+
+include_once "scripts/database.php";
+$userID = $_SESSION['userID'];
+$sql = "SELECT * FROM xusers WHERE x_id = $userID";
+$result = mysqli_query($conn, $sql);
 
 while ($row = $result->fetch_assoc()) :
 
@@ -111,9 +80,6 @@ while ($row = $result->fetch_assoc()) :
 <?php endwhile?>
 </section>
 
-
-
-
   <!-- POSTS -->
   <section id="posts">
     <div class="container">
@@ -123,29 +89,35 @@ while ($row = $result->fetch_assoc()) :
             <div class="card-header">
               <h4>Latest Your Comments</h4>
             </div>
+            
             <table class="table table-striped">
+              
               <thead class="thead-dark">
                 <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th></th>
-                  <th>description</th>
-                  <th></th>
-                  <th></th>
+                  <th>topic #</th>
+                  <th>Content</th>
+                  <th>Time</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>coment</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-               
-               
-               
+              <?php
+include_once "scripts/database.php";
+$sql = "SELECT * FROM msg WHERE user = '".$userNAME."'";
+$result = mysqli_query($conn, $sql);
+while ($row = $result->fetch_assoc()) :
+  echo
+  '
+  <tbody>
+  <tr>
+  <td>'.$row['topic_id'].'</td>
+  <td>'.$row['content'].'</td>
+  <td>'.date("Y-m-d H:i:s", $row['time']).'</td>
+  </tr>
+  
+  '
+?>
+    <?php endwhile?>
               </tbody>
+
             </table>
           </div>
         </div>
@@ -154,22 +126,6 @@ while ($row = $result->fetch_assoc()) :
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer id="main-footer" class="bg-dark text-white mt-5 p-5">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <p class="lead text-center">
-            Copyright &copy;
-            <span id="year"></span>
-            FormX
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
 
   <!-- MODALS -->
 
@@ -218,6 +174,4 @@ while ($row = $result->fetch_assoc()) :
       </div>
     </div>
   </div>
-  <?php require'footer.php'?>
-
- 
+  <?php require "footer.php"?>

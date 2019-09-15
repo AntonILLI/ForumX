@@ -10,11 +10,9 @@
   $user_image = '';
   $email = '';
 
-
-
-  //$description = mysqli_escape_string($mysqli,$_POST['description']);
+//$description = mysqli_escape_string($mysqli,$_POST['description']);
 $mysqli = new mysqli('localhost','root','','ForumX') or die($mysqli->error);
-
+$id = $_SESSION['id'];
 
 //$description = mysqli_escape_string($mysqli,$_POST['description']);
 
@@ -53,10 +51,10 @@ else
   header('Location:user_dashboard.php');
 
      }
+  }
 }
-}
-//$mysqli->query("DELETE FROM user WHERE id=$id") or die($mysqli->error());
 
+//$mysqli->query("DELETE FROM user WHERE id=$id") or die($mysqli->error());
 
 if(isset($_GET['delete'])){
   $id = $_GET['delete'];
@@ -66,10 +64,8 @@ if(isset($_GET['delete'])){
   $_SESSION['msg_type'] = "danger";
 
   header("Location:admin_users.php");
-
  
 }
-
 
 if(isset($_GET['edit'])){
  $id = $_GET['edit'];
@@ -87,6 +83,7 @@ if(isset($_GET['edit'])){
 
   }
 }
+
 //edit 
 
   if(isset($_POST['update'])){
@@ -105,11 +102,4 @@ if(isset($_GET['edit'])){
   
   }
 
-
-
-
 ?>
-
-
-
-
