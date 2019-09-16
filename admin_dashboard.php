@@ -13,38 +13,20 @@
 
 <body>
 
+<?php
+  $mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
 
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+  $result = $mysqli->query("SELECT * FROM xAdmin") or die($mysqli->error);
+     
+  $sql = $mysqli->query("SELECT COUNT(x_id) FROM xUsers ")or die($mysqli->error);
+     
+  $admin_sql = $mysqli->query("SELECT COUNT(id) FROM xAdmin") or die($mysqli->error);
 
+  $msg_sql = $mysqli->query("SELECT COUNT(id) FROM msg") or die($mysqli->error);
+?>
 
-
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
-      <?php
-      $mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
-
-
-      ?>
-
-  
-
-      <?php
-    
-      $result = $mysqli->query("SELECT * FROM xAdmin") or die($mysqli->error);
-      
-      ?>
-       <?php
-     
-   
-     $sql = $mysqli->query("SELECT COUNT(x_id) FROM xUsers ")or die($mysqli->error);
-     
-     $admin_sql = $mysqli->query("SELECT COUNT(id) FROM xAdmin") or die($mysqli->error);
-      
-     
-     ?>
-
-
-
-      <!-- <a href="admin_dashboard.html" class="navbar-brand">Forumx</a> -->
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -206,7 +188,13 @@
             <div class="card-body">
               <h3>Commnets</h3>
              <h4 class="display-4">
-             <i class="fas fa-comments"></i> 4
+             <i class="fas fa-comments"></i>
+             <?php while ($row = mysqli_fetch_array($msg_sql)) :?>
+
+<?php echo $row['COUNT(id)'];?>
+
+<?php endwhile?>
+
                
               </h4>
               <a href="comments.php" class="btn btn-outline-light btn-sm">View</a>

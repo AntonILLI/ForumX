@@ -13,44 +13,40 @@
 
 <body>
 
-
-
-
-
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container">
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li class="nav-item px-2">
+            <a href="http://localhost/forumx/admin_dashboard.php" class="nav-link active">Dashboard</a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="comments.php" class="nav-link">Comments</a>
+          </li>
 
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav">
-            <li class="nav-item px-2">
-              <a href="admin_dashboard.php" class="nav-link">Dashboard</a>
-            </li>
-            <li class="nav-item px-2">
-              <a href="" class="nav-link">Comments</a>
-            </li>
-            <li class="nav-item px-2">
-              <a href="admin_users.php" class="nav-link active">Users</a>
-            </li>
-          </ul>
+          <li class="nav-item px-2">
+            <a href="admin_users.php" class="nav-link">Users</a>
+          </li>
+        </ul>
 
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown mr-3">
-              <a href="#" class="nav-link " data-toggle="dropdown">
-                <i class="fas fa-user"></i> Welcome ForumX
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="login.html" class="nav-link">
-                <i class="fas fa-user-times"></i> Logout
-              </a>
-            </li>
-          </ul>
-        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown mr-3">
+            <a href="scripts/gotoindex.php" class="nav-link">
+              index.php
+            </a>
+          
+          </li>
+          <li class="nav-item">
+            <a href="scripts/logout.php" class="nav-link">
+              <i class="fas fa-user-times"></i> Logout
+            </a>
+          </li>
+        </ul>
       </div>
+    </div>
   </nav>
 
       <?php require_once 'admin_process.php' ?>
@@ -106,7 +102,7 @@
         // $sql = "SELECT * FROM user LIMIT";
         // $sql .= "LIMIT $set_per_page";
         // $sql .= "OFFSET $$offset";
-        $sql = "SELECT * FROM msg LIMIT $offset, $set_per_page";
+        $sql = "SELECT * FROM msg LIMIT $offset, $set_per_page ";
         $result_row = $mysqli->query($sql) or die($mysqli->error);
 
         ?>
@@ -114,7 +110,7 @@
 
         <?php
         $mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
-        $result = $mysqli->query("SELECT * FROM msg") or die($mysqli->error);
+        $result = $mysqli->query("SELECT * FROM msg ORDER BY time DESC") or die($mysqli->error);
         ?>
 
 
@@ -184,7 +180,7 @@
               </thead>
               <?php
  
-              while ($row = $result_row->fetch_assoc()) :
+              while ($row = $result->fetch_assoc()) :
               
                
                 ?>
@@ -208,7 +204,7 @@
   </section>
 
 
-
+<!--
   <section>
     <div class="container mt-5">
       <div class="row">
@@ -218,7 +214,7 @@
             <?php
 
             echo "<ul class='pagination'>";
-            echo "<li class='page-item'><a class='page-link' href='admin_dashboard.php?page=" . ($current_page - 1) . "' class='button'>Previous</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='comments.php?page=" . ($current_page - 1) . "' class='button'>Previous</a></li>";
 
             ?>
 
@@ -226,11 +222,11 @@
             for ($i = 1; $i <= $total; $i++) {
               //active link
               if ($i == $current_page) {
-                echo "<li class='page-item'><a class='page-link' href='admin_dashboard.php?page={$i}'>{$i}</a></li>";
+                echo "<li class='page-item'><a class='page-link' href='comments.php?page={$i}'>{$i}</a></li>";
               } else {
                 //not active
 
-                echo "<li class='page-item'><a class='page-link' href='admin_dashboard.php?page={$i}'>{$i}</a></li>";
+                echo "<li class='page-item'><a class='page-link' href='comments.php?page={$i}'>{$i}</a></li>";
               }
             }
 
@@ -238,7 +234,7 @@
             <?php
 
             echo "<ul class='pagination'>";
-            echo "<li class='page-item'><a class='page-link' href='admin_dashboard.php.php?page=" . ($current_page - 1) . "' class='button'>Next</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='comments.php?page=" . ($current_page - 1) . "' class='button'>Next</a></li>";
 
 
 
@@ -248,7 +244,7 @@
       </div>
     </div>
   </section>
-
+          -->
 
   <!-- FOOTER -->
   <footer id="main-footer" class="bg-dark text-white mt-5 p-5">

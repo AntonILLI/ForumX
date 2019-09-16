@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $dbuser = 'root';
-$pwd = '123456';
+$pwd = '';
 $dbname = 'forumx';
 
 $db = new mysqli($host, $dbuser, $pwd, $dbname);

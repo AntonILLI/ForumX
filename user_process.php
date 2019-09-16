@@ -1,7 +1,5 @@
 <?php
 
- session_start();
-
   $id = 0;
   $update = false;
   $user_name = '';
@@ -12,7 +10,7 @@
 
 //$description = mysqli_escape_string($mysqli,$_POST['description']);
 $mysqli = new mysqli('localhost','root','','ForumX') or die($mysqli->error);
-$id = $_SESSION['id'];
+$id = $_SESSION['userID'];
 
 //$description = mysqli_escape_string($mysqli,$_POST['description']);
 

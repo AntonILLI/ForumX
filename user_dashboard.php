@@ -35,7 +35,7 @@
           <h1><i class="fas fa-cog"></i> User Dashboard</h1>
         </div>
         <div style="width: 50%; margin: 0 auto;">
-        <a href='user_profile.php' class="btn btn-warning btn-block mt-2" style="font-size:20px;">
+        <a href='user_profile.php' class="btn btn-warning btn-block mt-2" style="font-size:20px; display: none">
             <i class="fas fa-arrow-left"></i> Edit Profile
           </a>
         </div>
@@ -71,7 +71,7 @@ while ($row = $result->fetch_assoc()) :
       <div class="card-body ml-5 mt-1">
         <h3 class="card-title"><?php echo $row['x_username']?></h3>
         
-        <p class="card-text"><?php echo $row['x_description']?></p>
+        <p class="card-text"><h1>Power (<?php echo $row['x_power']?>)</p>
         <p class="card-text"><small class="text-muted"></small></p>
       </div>
     </div>

@@ -8,10 +8,10 @@
         <h2>Rule 1</h2>
       </div>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-        magnam molestias natus labore reprehenderit in, dolore officiis
-        deleniti sit qui dignissimos ut quas doloremque nesciunt laboriosam
-        pariatur expedita error? Ex.
+        In order to take be an active user of our forum you
+        should first register with your email. As soon as you
+        are logged in our website you now can take part in 
+        Forum's live
       </p>
     </div>
 
@@ -21,10 +21,10 @@
         <h2>Rule 2</h2>
       </div>
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem
-        minus accusantium dolores vel error at, sequi tempore, quis
-        veritatis dolorum hic tenetur necessitatibus, ab veniam illo beatae.
-        Sed, natus accusamus!
+        Pick a topic among our weekly pool and decide
+        for yourself which one do you like most. You can now
+        leave a comment on the topics page with any message
+        (mind your language) and topic will gain power
       </p>
     </div>
 
@@ -34,9 +34,10 @@
         <h2>Rule 3</h2>
       </div>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, natus
-        quam, aperiam et facilis fugiat velit molestias sint incidunt
-        explicabo doloribus dicta facere amet sed aliquam quo nulla ab quos!
+        You can only leave a comment once a day and won`t
+        be able to leave another under another topics as well.
+        Come back within 24 hours an check how much time
+        you got left till next comment
       </p>
     </div>
     <div class="section-rule" >
@@ -45,16 +46,16 @@
         <h2>Rule 4</h2>
       </div>
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia,
-        ea ad? Maiores, enim dicta. Voluptatum temporibus id eaque fuga sunt
-        obcaecati nostrum quidem optio, non, esse eveniet laborum aperiam
-        quas.
+        After the comment was left you will gain +10
+        power to your user which will help you to contribute
+        more into single topic`s power in future. You can
+        switch the topics but you might risk not take be listed
+        in top 5 contributers under winner page
       </p>
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum
-        dolorem praesentium natus suscipit excepturi libero placeat
-        obcaecati consequatur maiores vitae laborum omnis ducimus hic sint
-        eum at, dignissimos, amet delectus.
+        Be polite and nice to everyone, otherwise admins
+        might take actions to delete your comment, reduce
+        your power or even block your user
       </p>
     </div>
   </div>

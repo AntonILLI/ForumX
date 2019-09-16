@@ -216,9 +216,17 @@ nav ul li a:hover::after {
   }
 }
 
-
-
-
+.winner-screen {
+  margin-top:5px;
+  padding: 0;
+  color:#ffffff;
+  min-height: 350px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+ 
+}
 
 .screen {
   margin-top:5px;

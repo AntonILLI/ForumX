@@ -74,7 +74,7 @@ if(isset($_GET['id'])){
   //$updated=true;
   $result = $mysqli->query("SELECT * FROM xAdmin  WHERE id=$id");
 
-  if(count($result)==1){
+  if(mysqli_num_rows($result)==1){
     $row = $result->fetch_array();
 
     

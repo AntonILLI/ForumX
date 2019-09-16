@@ -44,15 +44,15 @@ while($row = $mysqli_result->fetch_array(MYSQLI_ASSOC)){
     $rows[] = $row;
 }
 
-//require "scripts/gain_power.php";
-$power = 0;
+require "scripts/gain_power.php";
+$power = gain_power($id);
 
-$new_sql = "SELECT * FROM msg WHERE topic_id=$id";
-$new_result = mysqli_query($db, $sql);
+// $new_sql = "SELECT * FROM msg WHERE topic_id=$id";
+// $new_result = mysqli_query($db, $sql);
 
-while($new_row = mysqli_fetch_assoc($new_result)){
-    $power = $power + $new_row['power'];
-}
+// while($new_row = mysqli_fetch_assoc($new_result)){
+//     $power = $power + $new_row['power'];
+// }
 
 $value = ($power / 1000) * 100;
 
@@ -106,7 +106,7 @@ $value = ($power / 1000) * 100;
             $userNAME = $_SESSION['userNAME'];
             $userPOWER = $_SESSION['userPOWER'];
 
-            include "scripts/date.php";
+            include_once "scripts/date.php";
 
             if(check_24_hours($userNAME)){
             echo '
@@ -128,10 +128,23 @@ $value = ($power / 1000) * 100;
             </div>
             ';
             } else {
-                echo "<p style='color: red'>Gotta wait till next day</p>";
+
+                include "scripts/database.php";
+
+                $sql = "SELECT * FROM msg WHERE user = '".$userNAME."' ORDER BY time DESC;";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $last_comment_time = $row['time'];
+
+                include "scripts/countdown.php";
+
+                countdown($last_comment_time);
+                
             }
         } else {
-            echo "<p style='color: red'>You are not logged in</p>";
+            echo '<button type="button" class="btn btn-lg btn-danger btn-block" disabled>
+            You are not logged in
+            </button>';
         }
         ?>
         <!-- leave a comment input -->
