@@ -1,6 +1,6 @@
 <?php require "header.php" ?>
 <?php
-$mysqli = new mysqli('localhost', 'root', '', 'ForumX') or die(mysqli_error($mysqli));
+$mysqli = new mysqli('root', '', 'ForumX') or die(mysqli_error($mysqli));
 $result = $mysqli->query("SELECT * FROM xAdmin") or die($mysqli->error);
 ?>
 <main>
