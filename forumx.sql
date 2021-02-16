@@ -22,18 +22,6 @@ SET time_zone = "+00:00";
 -- Database: `forumx`
 --
 
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `re_assign_staff_to_new_paddock` (IN `this_id` INT, `new_paddock` INT)  BEGIN
-	UPDATE staff
-    SET paddock_id = new_paddock
-    WHERE id = this_id;
-END$$
-
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --

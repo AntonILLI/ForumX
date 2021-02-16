@@ -42,7 +42,14 @@
 
 <?php include 'admin_process.php'?>
 <?php
- $mysqli = new mysqli('localhost','root','','ForumX') or die(mysqli_error($mysqli));
+  $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+  $server = $url["host"];
+  $username = $url["user"];
+  $password = $url["pass"];
+  $db = substr($url["path"], 1);
+  
+  $mysqli = new mysqli($server, $username, $password, $db) or die(mysqli_error($mysqli));
 
  if(empty($_GET['id'])){
   header("Location:admin_dashboard.php");

@@ -1,11 +1,13 @@
 <?php
 
-$db_server = "localhost";
-$db_user = "root";
-$db_passwd = "";
-$db_name = "forumx";
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$conn = mysqli_connect($db_server, $db_user, $db_passwd, $db_name);
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db) or die(mysqli_error($mysqli));
 
 if (!$conn) {
     die("Connection failed: ".mysqli_connect_error());
